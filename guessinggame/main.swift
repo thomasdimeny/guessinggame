@@ -8,40 +8,61 @@
 
 import Foundation
 
-//Generate a random number
-
-var guess: Int
+//var guess: Int
 var example: UInt32
 var tries = 1
 var playAgain: Int
 var playingGame: Bool = true
-
-
+var playerName: String
+print("Enter your name")
+playerName = readLine()!
+print(playerName)
 while playingGame {
-    print("Guess a number")
-    guess = Int(readLine()!)!
-    let randomNumber = Int(arc4random_uniform(100))
-    print(randomNumber)
     
-while guess != randomNumber && tries <= 5 {
+    print(" \(playerName), Between 1 and what number would you like to guess")
+    var upperLimit = Int(readLine()!)!
+    if  upperLimit == nil {
+        print("Please enter a number")
+        upperLimit = Int(readLine()!)!
+    }
+    let randomNumber = Int(arc4random_uniform(UInt32(upperLimit)))
+    print("please guess a number between 1 and \(String(describing: upperLimit))")
+    print(randomNumber)
+    var guess = Int(readLine()!)
+    if guess == nil {
+        print("Please guess a number")
+        guess = Int(readLine()!)!
+    }
+   
+    while guess != randomNumber && tries <= 5 {
+        
+    
+        if randomNumber > guess! {
+            print("The number is higher")
+        } else if randomNumber < guess! {
+            print("The number is lower")
+        }
+        
+        print("Guess again")
+        guess! = Int(readLine()!)!
+        
+        tries += 1
+        print("You have used \(tries) out of 6 tries")
+    }
+    
+    tries = 1
     if randomNumber == guess {
         print("You won!")
     }
-    else if randomNumber > guess {
-        print("The number was higher")
-    } else if randomNumber < guess {
-        print("The number was lower")
-    }
-    print("Guess again")
-    guess = Int(readLine()!)!
-    tries += 1
-}
-    tries = 1
-    print("would you like to play again? Enter 0 for no and 1 for yes")
+    print("would you like to play again \(playerName)? Enter 0 for no and 1 for yes")
     playAgain = Int(readLine()!)!
     if playAgain == 0 {
         playingGame = false
     }
+}
+
+if playingGame == false {
+    print("Thanks fam")
 }
 
 
