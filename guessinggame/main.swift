@@ -27,7 +27,6 @@ while playingGame {
     }
     let randomNumber = Int(arc4random_uniform(UInt32(upperLimit)))
     print("please guess a number between 1 and \(String(describing: upperLimit))")
-    print(randomNumber)
     var guess = Int(readLine()!)
     if guess == nil {
         print("Please guess a number")
@@ -54,6 +53,7 @@ while playingGame {
     if randomNumber == guess {
         print("You won!")
     }
+    print("the number was \(randomNumber)")
     print("would you like to play again \(playerName)? Enter 0 for no and 1 for yes")
     playAgain = Int(readLine()!)!
     if playAgain == 0 {
